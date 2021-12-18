@@ -11,6 +11,7 @@
 	<h1>pomodoro</h1>
 	
 	<ul>
+		<li class="reset">reset</li>
 		<li class="short">short break</li>
 		<li class="long">long break</li>
 	</ul>
@@ -20,6 +21,31 @@
 			<p class="time">00:00:00</p>
 			<p class="status">paused</p>
 		</div>
+	</div>
+
+	<div class="settings">settings</div>
+	<div class="options">
+		<div>
+			<label for="fill-color">fill color:</label>
+			<input type="color" id="fill-color" class="fill-color-picker"/>
+		</div>
+
+		<div>
+			<label for="pomodoro-time">pomodoro time (seconds):</label>
+			<input id="pomodoro-time" class="pomodoro-time" type="number"/>
+		</div>
+
+		<div>
+			<label for="short-time">short break time (seconds):</label>
+			<input id="short-time" class="short-time" type="number"/>
+		</div>
+
+		<div>
+			<label for="long-time">long break time (seconds):</label>
+			<input id="long-time" class="long-time" type="number"/>
+		</div>
+
+		<button class="close-settings">close</button>
 	</div>
 </body>
 </html>

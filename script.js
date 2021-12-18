@@ -2,8 +2,16 @@ const progressBar = document.querySelector(".circle");
 const progressButton = document.querySelector(".inside");
 const time = document.querySelector(".time");
 const statusText = document.querySelector(".status");
-const short = document.querySelector(".short")
-const long = document.querySelector(".long")
+const short = document.querySelector(".short");
+const long = document.querySelector(".long");
+const settings = document.querySelector(".settings");
+const reset = document.querySelector(".reset");
+const options = document.querySelector(".options");
+const closeSettings = document.querySelector(".close-settings");
+const fillColorPicker = document.querySelector(".fill-color-picker");
+const pomodoroTime = document.querySelector(".pomodoro-time");
+const shortTime = document.querySelector(".short-time");
+const longTime = document.querySelector(".long-time");
 
 function convertTime(sec) {
 
@@ -21,17 +29,34 @@ function convertTime(sec) {
 }
 
 class Timer {
-    constructor(time = 3600) {
-        this.intervalTime = 1;
+    constructor() {
+        this.intervalTime = 1000;
         this.progressValue = 0;
-        this.progressEndValue = time;
-        this.scalingDeg = 360 / time;
+        this.pomodoroValue = 3600;
         this.timerID = null;
         this.paused = true;
         this.break = false;
         this.short = true;
         this.shortTime = 600;
         this.longTime = 1200;
+        this.fillColor = "#e66140";
+    }
+
+    setPomodoroValue(time) {
+        this.pomodoroValue = time;
+    }
+
+    setShortTime(time) {
+        this.shortTime = time;
+    }
+
+    setLongTime(time) {
+        this.longTime = time;
+    }
+
+    setFillColor(color) {
+        this.fillColor = color;
+        console.log(color);
     }
 
     setLong() {
@@ -52,17 +77,19 @@ class Timer {
     }
 
     pauseTimer() {
-        this.clearTimer();
+        clearInterval(this.timerID)
         this.paused = true;
         statusText.innerText = "paused";
     }
 
-    clearTimer() {
-        clearInterval(this.timerID)
-    }
-
     resetTimer() {
         this.progressValue = 0;
+        this.break = false;
+        this.paused = true;
+        statusText.innerText = "paused";
+        progressBar.style.background = "";
+        time.textContent = "00:00:00";
+        clearInterval(this.timerID);
     }
 
     runTimer() {
@@ -72,11 +99,12 @@ class Timer {
 
         statusText.innerText = "active";
 
+        const scalingDeg = 360 / this.pomodoroValue;
+
         this.timerID = setInterval(() => {
 
-            if (this.progressValue >= this.progressEndValue) {
+            if (this.progressValue >= this.pomodoroValue) {
                 this.resetTimer();
-                this.clearTimer()
                 this.runBreak()
                 return;
             }
@@ -86,8 +114,8 @@ class Timer {
             time.textContent = convertTime(this.progressValue);
     
             progressBar.style.background = `conic-gradient(
-                #e66140 ${this.progressValue * this.scalingDeg}deg,
-                #cadcff ${this.progressValue * this.scalingDeg}deg
+                ${this.fillColor} ${this.progressValue * scalingDeg}deg,
+                #cadcff ${this.progressValue * scalingDeg}deg
             )`;
     
         }, this.intervalTime)
@@ -107,7 +135,6 @@ class Timer {
 
             if (this.progressValue >= breakTimer) {
                 this.resetTimer();
-                this.clearTimer();
                 this.runTimer();
                 return;
             }
@@ -117,7 +144,7 @@ class Timer {
             time.textContent = convertTime(this.progressValue);
     
             progressBar.style.background = `conic-gradient(
-                #e66140 ${this.progressValue * scalingDeg}deg,
+                ${this.fillColor} ${this.progressValue * scalingDeg}deg,
                 #cadcff ${this.progressValue * scalingDeg}deg
             )`;
     
@@ -125,10 +152,17 @@ class Timer {
     }
 }
 
-const newTimer = new Timer();
+const timer = new Timer();
 
 short.style.background = "#e66140";
 
-progressButton.addEventListener("click", () => newTimer.startPomodoro())
-short.addEventListener("click", () => newTimer.setShort())
-long.addEventListener("click", () => newTimer.setLong())
+progressButton.addEventListener("click", () => timer.startPomodoro());
+short.addEventListener("click", () => timer.setShort());
+long.addEventListener("click", () => timer.setLong());
+reset.addEventListener("click", () => timer.resetTimer());
+settings.addEventListener("click", () => options.style.visibility = "visible");
+closeSettings.addEventListener("click", () => options.style.visibility = "hidden");
+fillColorPicker.addEventListener("blur", e => timer.setFillColor(e.currentTarget.value));
+pomodoroTime.addEventListener("blur", e => timer.setPomodoroValue(e.currentTarget.value));
+shortTime.addEventListener("blur", e => timer.setShortTime(e.currentTarget.value));
+longTime.addEventListener("blur", e => timer.setLongTime(e.currentTarget.value));

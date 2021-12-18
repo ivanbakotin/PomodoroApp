@@ -17,6 +17,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	background-color: #383c70;
+	position: relative;
 
 	h1 {
 		font-size: 6rem;
@@ -97,6 +98,51 @@ body {
 
 		100% {
 			transform: translate(100%);
+		}
+	}
+
+	.settings {
+		margin-top: 2rem;
+		font-size: 3rem;
+		color: white;
+		font-weight: bold;
+		border-radius: 10px;
+		padding: 1rem;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #e66140;
+		}
+	}
+
+	.options {
+		visibility: hidden;
+		position: absolute;
+		height: 40rem;
+		width: 35rem;
+		background-color: #2d315e;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		border: solid white 1px;
+		border-radius: 20px;
+
+		div {
+			input, label {
+				margin: 1rem;
+				font-size: 2rem;	
+			}
+
+			label {
+				color: white;
+			}
+		}
+
+		button {
+			margin: 2rem;
+			font-size: 3rem;
+			padding-inline: 1rem;
 		}
 	}
 }

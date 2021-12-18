@@ -126,7 +126,7 @@ class Timer {
         this.break = true;
         this.paused = false;
 
-        statusText.innerText = "active";
+        statusText.innerText = "on break";
 
         const breakTimer = this.short ? this.shortTime : this.longTime;
         const scalingDeg = this.short ? 360 / this.shortTime : 360 / this.longTime;

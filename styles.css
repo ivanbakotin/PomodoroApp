@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 62.5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+}
+
+@media (max-width: 768px) {
+  * {
+    font-size: 45%;
+  }
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #383c70;
+}
+
+body h1 {
+  font-size: 6rem;
+  color: white;
+  font-weight: lighter;
+  text-shadow: 1px 1px azure;
+  margin-bottom: 5rem;
+}
+
+body ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 4rem;
+  list-style: none;
+  background-color: #2d315e;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 3rem;
+}
+
+body ul li {
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+body ul li:hover {
+  background-color: #e66140;
+}
+
+body .circle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 35rem;
+  width: 35rem;
+  border-radius: 50%;
+  background: #cadcff;
+}
+
+body .circle .inside {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #2d315e;
+  height: 30rem;
+  width: 30rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+body .circle .inside .time {
+  font-size: 5rem;
+  color: white;
+  font-weight: bold;
+}
+
+body .circle .inside .status {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+}
+
+body .circle .inside p + p {
+  margin-top: 5rem;
+}
+
+body .circle .inside:hover {
+  background-color: #e66140;
+}
+
+@-webkit-keyframes fill {
+  0% {
+    -webkit-transform: translate(0%);
+            transform: translate(0%);
+  }
+  100% {
+    -webkit-transform: translate(100%);
+            transform: translate(100%);
+  }
+}
+
+@keyframes fill {
+  0% {
+    -webkit-transform: translate(0%);
+            transform: translate(0%);
+  }
+  100% {
+    -webkit-transform: translate(100%);
+            transform: translate(100%);
+  }
+}
+/*# sourceMappingURL=styles.css.map */
